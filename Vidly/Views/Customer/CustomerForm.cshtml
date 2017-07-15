@@ -1,0 +1,45 @@
+﻿@model Vidly.ViewModels.CustomerFormViewModel
+@{
+    ViewBag.Title = "New";
+}
+
+<h2></h2>
+@using (@Html.BeginForm("Save", "Customer"))
+{
+    <legend>New Customer</legend>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Customer.Nome, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.Customer.Nome, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Customer.Nome) })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Customer.Birthdate, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.Customer.Birthdate, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Customer.Birthdate) })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Customer.MembershipTypeId, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.DropDownListFor(model => model.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Tipo de Membro", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Customer.IsSubscribedToNewsletter, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.Customer.IsSubscribedToNewsletter)
+                </label>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Customer.Id)
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            @Html.ActionLink("Cancelar", "Index", "Customer", null, new { @class = "btn btn-defaul" })
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+}

@@ -5,6 +5,8 @@
 
 <h2>Customers</h2>
 
+@Html.ActionLink("Adicionar", "New", "Customer", null, new { @class = "btn btn-primary" })
+
 @if (!Model.Any())
 {
     <text>No one customer rent with us.</text>
@@ -18,6 +20,7 @@ else
                 <th>@Html.DisplayNameFor(Model => Model.Nome)</th>
                 <th>@Html.DisplayNameFor(Model => Model.MembershipType.Name)</th>
                 <th>@Html.DisplayNameFor(Model => Model.MembershipType.DiscountRate)</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +31,7 @@ else
                     <td>@Html.DisplayFor(modelItem => customer.Nome)</td>
                     <th>@Html.DisplayFor(modelItem => customer.MembershipType.Name)</th>
                     <td>@Html.DisplayFor(modelItem => customer.MembershipType.DiscountRate)%</td>
+                    <td>@Html.ActionLink(" ", "Edit", "Customer", new { id = @customer.Id }, new { @class = "glyphicon glyphicon-pencil" })
                 </tr>
             }
         </tbody>

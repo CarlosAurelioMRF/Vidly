@@ -14,10 +14,12 @@ namespace Vidly.Models
         [StringLength(255)]
         public string Nome { get; set; }
 
+        [Display(Name = "Assinar Newsletter")]
         public bool IsSubscribedToNewsletter { get; set; }
 
         public MembershipType MembershipType { get; set; }
 
+        [Display(Name = "Tipo de Membro")]
         public byte MembershipTypeId { get; set; }
 
         [Display(Name = "Data de Nascimento")]
