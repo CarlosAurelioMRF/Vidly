@@ -1,0 +1,20 @@
+﻿@model Vidly.Models.Customer
+@{ 
+    ViewBag.Title = Model.Nome;
+}
+
+<h2>@Html.DisplayFor(modelItem => Model.Nome)</h2>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        @Html.DisplayNameFor(Model => Model.MembershipType.Name): @Html.DisplayFor(modelItem => Model.MembershipType.Name)
+    </li>
+
+    @if (Model.Birthdate.HasValue)
+    {
+        <li class="list-group-item">
+            @Html.DisplayNameFor(Model => Model.Birthdate): @Html.DisplayFor(modelItem => Model.Birthdate)
+        </li>
+    }
+    
+</ul>

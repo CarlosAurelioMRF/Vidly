@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Vidly.Models.Movie>
+
+@{ 
+    ViewBag.Title = "Movies";
+}
+
+<h2>Movies</h2>
+
+@if (!Model.Any())
+{
+    <text>No one movie to show.</text>
+}
+else
+{
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(Model => Model.Id).ToString().ToUpper()</th>
+                <th>@Html.DisplayNameFor(Model => Model.Nome)</th>
+                <th>@Html.DisplayNameFor(Model => Model.Genre.Name)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink("#" + movie.Id.ToString(), "Details", "Movie", new { id = @movie.Id }, null)</td>
+                    <td>@Html.DisplayFor(modelItem => movie.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => movie.Genre.Name)</td>
+                </tr>
+            } 
+        </tbody>
+    </table>
+}

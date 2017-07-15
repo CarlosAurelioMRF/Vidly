@@ -1,0 +1,21 @@
+﻿@model Vidly.Models.Movie
+@{
+    ViewBag.Title = Model.Nome;
+}
+
+<h2>@Html.DisplayFor(modelItem => Model.Nome)</h2>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        @Html.DisplayNameFor(Model => Model.Genre.Name): @Html.DisplayFor(modelItem => Model.Genre.Name)
+    </li>
+    <li class="list-group-item">
+        @Html.DisplayNameFor(Model => Model.ReleaseDate): @Html.DisplayFor(modelItem => Model.ReleaseDate)
+    </li>
+    <li class="list-group-item">
+        @Html.DisplayNameFor(Model => Model.DateAdded): @Html.DisplayFor(modelItem => Model.DateAdded)
+    </li>
+    <li class="list-group-item">
+        @Html.DisplayNameFor(Model => Model.NumberInStock): @Html.DisplayFor(modelItem => Model.NumberInStock)
+    </li>
+</ul>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Vidly.Models.Customer>
+@{
+    ViewBag.Title = "Customers";
+}
+
+<h2>Customers</h2>
+
+@if (!Model.Any())
+{
+    <text>No one customer rent with us.</text>
+}
+else
+{
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(Model => Model.Id).ToString().ToUpper()</th>
+                <th>@Html.DisplayNameFor(Model => Model.Nome)</th>
+                <th>@Html.DisplayNameFor(Model => Model.MembershipType.Name)</th>
+                <th>@Html.DisplayNameFor(Model => Model.MembershipType.DiscountRate)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink("#" + customer.Id.ToString(), "Details", "Customer", new { id = @customer.Id }, null)</td>
+                    <td>@Html.DisplayFor(modelItem => customer.Nome)</td>
+                    <th>@Html.DisplayFor(modelItem => customer.MembershipType.Name)</th>
+                    <td>@Html.DisplayFor(modelItem => customer.MembershipType.DiscountRate)%</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
