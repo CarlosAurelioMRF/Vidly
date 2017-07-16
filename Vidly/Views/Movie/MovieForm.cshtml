@@ -1,0 +1,48 @@
+﻿@model Vidly.ViewModels.MovieFormViewModel
+@{ 
+    ViewBag.Title = "New";
+}
+
+<h2></h2>
+
+@using (Html.BeginForm("Save", "Movie"))
+{
+    <legend>New Movie</legend>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movie.Nome, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.Movie.Nome, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Movie.Nome) })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movie.DateAdded, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.Movie.DateAdded, "{0:dd/MM/yyyy}", new { @class = "form-control", disabled = "disabled", placeholder = Html.DisplayNameFor(model => model.Movie.DateAdded) })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movie.ReleaseDate, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.Movie.ReleaseDate, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Movie.ReleaseDate) })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movie.NumberInStock, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.Movie.NumberInStock, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Movie.NumberInStock) })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Movie.GenreId, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.DropDownListFor(model => model.Movie.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Selecione o Gênero", new { @class = "form-control" })
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.Movie.Id)
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                @Html.ActionLink("Cancelar", "Index", "Movie", null, new { @class = "btn btn-defaul" })
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+}

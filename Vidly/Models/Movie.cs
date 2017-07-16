@@ -14,7 +14,10 @@ namespace Vidly.Models
         [StringLength(255)]
         public string Nome { get; set; }
         
+        [Display(Name = "Gênero")]
         public Genre Genre { get; set; }
+
+        [Display(Name = "Gênero")]
         public byte GenreId { get; set; }
 
         [Display(Name = "Data Adicionado")]

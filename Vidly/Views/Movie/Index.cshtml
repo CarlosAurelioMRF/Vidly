@@ -6,6 +6,8 @@
 
 <h2>Movies</h2>
 
+@Html.ActionLink("Adicionar", "New", "Movie", null, new { @class = "btn btn-primary" })
+
 @if (!Model.Any())
 {
     <text>No one movie to show.</text>
@@ -27,7 +29,8 @@ else
                     <td>@Html.ActionLink("#" + movie.Id.ToString(), "Details", "Movie", new { id = @movie.Id }, null)</td>
                     <td>@Html.DisplayFor(modelItem => movie.Nome)</td>
                     <td>@Html.DisplayFor(modelItem => movie.Genre.Name)</td>
-                </tr>
+                    <td>@Html.ActionLink(" ", "Edit", "Movie", new { id = @movie.Id }, new { @class = "glyphicon glyphicon-pencil" })
+</tr>
             } 
         </tbody>
     </table>
