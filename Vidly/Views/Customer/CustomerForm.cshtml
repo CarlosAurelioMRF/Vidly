@@ -7,22 +7,26 @@
 @using (@Html.BeginForm("Save", "Customer"))
 {
     <legend>New Customer</legend>
+
     <div class="form-group">
         @Html.LabelFor(model => model.Customer.Nome, new { @class = "col-lg-2 control-label" })
         <div class="col-lg-10">
             @Html.TextBoxFor(model => model.Customer.Nome, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Customer.Nome) })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Customer.Birthdate, new { @class = "col-lg-2 control-label" })
-        <div class="col-lg-10">
-            @Html.TextBoxFor(model => model.Customer.Birthdate, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Customer.Birthdate) })
+            @Html.ValidationMessageFor(m => m.Customer.Nome, null, new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Customer.MembershipTypeId, new { @class = "col-lg-2 control-label" })
         <div class="col-lg-10">
             @Html.DropDownListFor(model => model.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Tipo de Membro", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Customer.Birthdate, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.Customer.Birthdate, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Customer.Birthdate) })
+            @Html.ValidationMessageFor(m => m.Customer.Birthdate, null, new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
@@ -36,10 +40,16 @@
         </div>
     </div>
     @Html.HiddenFor(m => m.Customer.Id)
+    @Html.AntiForgeryToken()
     <div class="form-group">
         <div class="col-lg-10 col-lg-offset-2">
             @Html.ActionLink("Cancelar", "Index", "Customer", null, new { @class = "btn btn-defaul" })
             <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
     </div>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

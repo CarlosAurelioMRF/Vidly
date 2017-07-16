@@ -1,6 +1,6 @@
 ﻿@model Vidly.ViewModels.MovieFormViewModel
-@{ 
-    ViewBag.Title = "New";
+@{
+    ViewBag.Title = Model.Title;
 }
 
 <h2></h2>
@@ -8,41 +8,48 @@
 @using (Html.BeginForm("Save", "Movie"))
 {
     <legend>New Movie</legend>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Movie.Nome, new { @class = "col-lg-2 control-label" })
-            <div class="col-lg-10">
-                @Html.TextBoxFor(model => model.Movie.Nome, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Movie.Nome) })
-            </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Nome) })
+            @Html.ValidationMessageFor(m => m.Nome, null, new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Movie.DateAdded, new { @class = "col-lg-2 control-label" })
-            <div class="col-lg-10">
-                @Html.TextBoxFor(model => model.Movie.DateAdded, "{0:dd/MM/yyyy}", new { @class = "form-control", disabled = "disabled", placeholder = Html.DisplayNameFor(model => model.Movie.DateAdded) })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateAdded, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.DateAdded, "{0:dd/MM/yyyy}", new { @class = "form-control", disabled = "disabled", placeholder = Html.DisplayNameFor(model => model.DateAdded) })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Movie.ReleaseDate, new { @class = "col-lg-2 control-label" })
-            <div class="col-lg-10">
-                @Html.TextBoxFor(model => model.Movie.ReleaseDate, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Movie.ReleaseDate) })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReleaseDate, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.ReleaseDate, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.ReleaseDate) })
+            @Html.ValidationMessageFor(m => m.ReleaseDate, null, new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Movie.NumberInStock, new { @class = "col-lg-2 control-label" })
-            <div class="col-lg-10">
-                @Html.TextBoxFor(model => model.Movie.NumberInStock, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Movie.NumberInStock) })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumberInStock, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.NumberInStock, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.NumberInStock) })
+            @Html.ValidationMessageFor(m => m.NumberInStock, null, new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Movie.GenreId, new { @class = "col-lg-2 control-label" })
-            <div class="col-lg-10">
-                @Html.DropDownListFor(model => model.Movie.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Selecione o Gênero", new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.GenreId, new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.DropDownListFor(model => model.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Selecione o Gênero", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.GenreId, null, new { @class = "text-danger" })
         </div>
-        @Html.HiddenFor(m => m.Movie.Id)
-        <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-                @Html.ActionLink("Cancelar", "Index", "Movie", null, new { @class = "btn btn-defaul" })
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </div>
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            @Html.ActionLink("Cancelar", "Index", "Movie", null, new { @class = "btn btn-defaul" })
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
+    </div>
 }
