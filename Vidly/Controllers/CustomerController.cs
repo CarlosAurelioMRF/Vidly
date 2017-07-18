@@ -70,9 +70,7 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
+            return View();
         }
 
         public ActionResult Details(int id)
@@ -87,9 +85,14 @@ namespace Vidly.Controllers
 
         private CustomerFormViewModel GetViewModel(Customer customer)
         {
-            return new CustomerFormViewModel
+            if (customer == null)
+                return new CustomerFormViewModel()
+                {
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+            return new CustomerFormViewModel(customer)
             {
-                Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
         }

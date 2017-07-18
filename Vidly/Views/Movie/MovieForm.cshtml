@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm("Save", "Movie"))
 {
-    <legend>New Movie</legend>
+    <legend>@Model.Title</legend>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Nome, new { @class = "col-lg-2 control-label" })
